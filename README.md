@@ -1,16 +1,84 @@
-# React + Vite
+# GlicoTrack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App web responsivo para acompanhamento da saúde de pessoas com diabetes. Permite o registro diário de glicemia, insulina, refeições, atividades físicas e humor, com histórico e gráficos para acompanhamento familiar.
 
-Currently, two official plugins are available:
+## Evidências
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> Adicione aqui capturas de tela das telas principais do app.
 
-## React Compiler
+| Tela | Descrição |
+|---|---|
+| ![Login](docs/evidencias/login.png) | Tela de login |
+| ![Dashboard](docs/evidencias/dashboard.png) | Painel principal com registros do dia |
+| ![Histórico](docs/evidencias/historico.png) | Gráfico de glicemia ao longo do tempo |
+| ![Configurações](docs/evidencias/configuracoes.png) | Meta de glicemia e convite de familiares |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Registro de glicemia com indicação visual (dentro/fora da meta)
+- Registro de dose de insulina
+- Registro de refeições, atividade física e humor
+- Meta de glicemia configurável por faixa (mínimo e máximo)
+- Histórico com gráficos (Recharts)
+- Acesso de familiares em modo somente leitura via convite
+
+## Stack
+
+| Camada | Tecnologia |
+|---|---|
+| Frontend | React 19 + Vite |
+| Estilização | Tailwind CSS |
+| Gráficos | Recharts |
+| Backend + Banco | Supabase |
+
+## Como rodar localmente
+
+**Pré-requisitos:** Node.js 18+
+
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Configurar variáveis de ambiente
+cp .env.example .env
+# Edite o .env com suas credenciais do Supabase
+
+# 3. Iniciar o servidor de desenvolvimento
+npm run dev
+```
+
+## Variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto com base no `.env.example`:
+
+```env
+VITE_SUPABASE_URL=sua_url_do_projeto_no_supabase
+VITE_SUPABASE_ANON_KEY=sua_chave_anonima_do_supabase
+```
+
+As credenciais estão disponíveis em **Supabase > Project Settings > API**.
+
+## Scripts disponíveis
+
+```bash
+npm run dev      # Servidor de desenvolvimento
+npm run build    # Build de produção
+npm run preview  # Pré-visualização do build
+npm run lint     # Verificação de lint
+```
+
+## Estrutura do projeto
+
+```
+src/
+├── components/
+│   ├── configuracoes/   # Formulários de meta e convite familiar
+│   ├── historico/       # Gráfico e lista de registros
+│   ├── layout/          # Navbar e layout geral
+│   └── registros/       # Formulários de glicemia, insulina, refeição, etc.
+├── contexts/            # Contexto de autenticação
+├── lib/                 # Cliente Supabase
+└── pages/               # Login, Cadastro, Dashboard, Histórico, Configurações
+```
